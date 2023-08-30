@@ -80,7 +80,7 @@ app.layout = html.Div([
                 id='twitch-visit',
             )
         ]),
-    ], style={"columnCount": 4, 'textAlign': "center"}),
+    ], style={"columnCount": 5, 'textAlign': "center"}),
     html.H3('Total Visits by Month', style={"textAlign": "center"}),
     dcc.Graph(
         id='total-visit-line'
@@ -147,6 +147,15 @@ def update_figures(start_date_selected, end_date_selected, social_networks_selec
     twitter_visit = (
         df
         .loc[(df.social_network == 'twitter') &
+             (df.social_network.isin(social_networks_selected)) &
+             (df.device.isin(devices_selected)) &
+             (df.datetime >= start_date_selected) &
+             (df.datetime <= end_date_selected)]
+    ).shape[0]
+
+    twitch_visit = (
+        df
+        .loc[(df.social_network == 'twitch') &
              (df.social_network.isin(social_networks_selected)) &
              (df.device.isin(devices_selected)) &
              (df.datetime >= start_date_selected) &
