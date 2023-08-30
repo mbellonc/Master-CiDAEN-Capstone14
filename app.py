@@ -73,6 +73,13 @@ app.layout = html.Div([
                 id='twitter-visit',
             )
         ]),
+        html.Div([
+            html.Img(src="https://upload.wikimedia.org/wikipedia/commons/2/26/Twitch_logo.svg",
+                     style={"width": "100px"}),
+            html.H2(
+                id='twitch-visit',
+            )
+        ]),
     ], style={"columnCount": 4, 'textAlign': "center"}),
     html.H3('Total Visits by Month', style={"textAlign": "center"}),
     dcc.Graph(
@@ -100,6 +107,7 @@ app.layout = html.Div([
     Output('facebook-visit', 'children'),
     Output('instagram-visit', 'children'),
     Output('twitter-visit', 'children'),
+    Output('twitch-visit', 'children'),
     Output('total-visit-line', 'figure'),
     Output('total-visit-social-networks-line', 'figure'),
     Output('world-map', 'figure'),
@@ -238,7 +246,7 @@ def update_figures(start_date_selected, end_date_selected, social_networks_selec
         }
     )
 
-    return total_visit, facebook_visit, instagram_visit, twitter_visit, total_visit_fig, total_visit_social_network_fig, world_map_fig, devices_pie_fig
+    return total_visit, facebook_visit, instagram_visit, twitter_visit, twitch_visit,total_visit_fig, total_visit_social_network_fig, world_map_fig, devices_pie_fig
 
 
 if __name__ == '__main__':
